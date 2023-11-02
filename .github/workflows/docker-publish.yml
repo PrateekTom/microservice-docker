@@ -28,5 +28,5 @@ jobs:
 
     - name: Build Docker image
       run: |
-        docker build -t ghcr.io/prateektom/${{https://github.com/PrateekTom/microservice-docker}}/min-api-docker-ghcr::latest .
-        docker push ghcr.io/prateektom/${{https://github.com/PrateekTom/microservice-docker}}/min-api-docker-ghcr::latest
+        docker build -t ghcr.io/prateektom/${{https://github.com/PrateekTom/microservice-docker}}/min-api-docker-ghcr:latest .
+        docker push ghcr.io/prateektom/${{https://github.com/PrateekTom/microservice-docker}}/min-api-docker-ghcr:latest
