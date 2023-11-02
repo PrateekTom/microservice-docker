@@ -1,0 +1,32 @@
+name: Build and Push Docker Image
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up .NET SDK
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 6.0.x
+
+    - name: Build and Test
+      run: |
+        dotnet build --configuration Release
+        dotnet test
+
+    - name: Login to GitHub Packages
+      run: echo ${{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}} | docker login ghcr.io -u ${{prateektom}} --password-stdin
+
+    - name: Build Docker image
+      run: |
+        docker build -t ghcr.io/prateektom/${{https://github.com/PrateekTom/microservice-docker}}/min-api-docker-ghcr:latest .
+        docker push ghcr.io/prateektom/${{https://github.com/PrateekTom/microservice-docker}}/min-api-docker-ghcr:latest
