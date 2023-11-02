@@ -24,7 +24,7 @@ jobs:
         dotnet test
 
     - name: Login to GitHub Packages
-      run: echo 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 | docker login ghcr.io -u ${{prateektom}} --password-stdin
+      run: echo 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 | docker login ghcr.io -u prateektom --password-stdin
 
     - name: Build Docker image
       run: |
