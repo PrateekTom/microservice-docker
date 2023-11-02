@@ -42,7 +42,6 @@ public class Program
             return forecast;
         })
         .WithName("GetWeatherForecast");
-
         app.Run();
     }
 }
