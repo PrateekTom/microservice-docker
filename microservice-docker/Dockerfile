@@ -6,10 +6,10 @@ EXPOSE 80
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
-COPY ["microservice-docker/microservice-docker.csproj", "microservice-docker/"]
-RUN dotnet restore "microservice-docker/microservice-docker.csproj"
+COPY ["microservice-docker.csproj", "."]
+RUN dotnet restore "./microservice-docker.csproj"
 COPY . .
-WORKDIR "/src/microservice-docker"
+WORKDIR "/src/."
 RUN dotnet build "microservice-docker.csproj" -c Release -o /app/build
 
 FROM build AS publish
