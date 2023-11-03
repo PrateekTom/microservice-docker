@@ -1,29 +1,27 @@
 name: Docker Image CI
 
 on:
-   workflow_dispatch:
+  workflow_dispatch:
   #push:
-    #branches: [ "master" ]
+  #branches: [ "master" ]
   #pull_request:
-    #branches: [ "master" ]
+  #branches: [ "master" ]
 
 jobs:
-
   build:
-
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout the repository
-    - uses: actions/checkout@v2
-    - name: Login to Docker Hub  
-      run: |
-        docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
-      env:
-        DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
-        DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
       
-    - name: Build the Docker image
-      run: | 
-         docker build -t test-doc:latest .
-      working-directory: microservice-docker
+      - uses: actions/checkout@v2
+      - name: Checkout the repository
+        run: |
+          docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+        env:
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Build the Docker image
+        run: |
+          docker build -t test-doc:latest .
+        working-directory: microservice-docker
