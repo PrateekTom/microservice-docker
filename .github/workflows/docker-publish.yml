@@ -48,6 +48,12 @@ jobs:
           IMAGE_TAG="ghcr.io/${{secrets.DOCKER_USERNAME}}/min-api-docker-ghcr:$(date +%s)"
           docker buildx build --push -t $IMAGE_TAG .
       working-directory: microservice-docker
+      
+    - name: Deploy to Azure Web App
+      uses: azure/webapps-deploy@v2
+      with:
+          app-name: ${{ secrets.AZURE_WEBAPP_NAME }}
+          images: ${{ secrets.DOCKER_USERNAME }}/min-api-docker-ghcr:$(date +%s)
         
     - name: Cleanup
       run: docker system prune -f
