@@ -41,7 +41,10 @@ jobs:
       run: docker buildx build -t ghcr.io/${{secrets.DOCKER_USERNAME}}/min-api-docker-ghcr:latest .
       working-directory: microservice-docker
     - name: Push Docker Image to GitHub Packages
-      run: docker buildx build --push -t ghcr.io/${{secrets.DOCKER_USERNAME}}/api-docker-ghcr:$(date+%s)
+       IMAGE_TAG="ghcr.io/${{secrets.DOCKER_USERNAME}}/api-docker-ghcr:$(date +%s)"
+      run: |
+        docker buildx build --push -t $IMAGE_TAG .
+        echo "::set-output name=image::$IMAGE_TAG"
 
     - name: Cleanup
       run: docker system prune -f
