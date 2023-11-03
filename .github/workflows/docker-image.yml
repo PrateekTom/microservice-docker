@@ -1,0 +1,26 @@
+name: docker-build-workflow
+on:
+  push:
+    branches:
+      - master 
+      - develop
+  pull_request:
+    branches:
+      - master 
+      - develop : 
+      # Allow to run this workflow on GitHub actions manually
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    # Checkout the repository
+      - uses: actions/checkout@v2
+
+      - name: Build the Docker image
+      working-directory: microservice-docker
+      
+      run: docker build --file DockerFile -t ${{ secrets.DOCKER_HUB_USERNAME }}/docker-build-workflow:${{ github.sha }} .
+
+
+    
