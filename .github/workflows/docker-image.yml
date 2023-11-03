@@ -14,12 +14,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    -name : Checkout the repository
-     uses: actions/checkout@v2
-
-    -name : setup docker
-      uses: actions/setup-docker@v
-     run: |
+    - name: Checkout the repository
+    - uses: actions/checkout@v2
+    - name: Login to Docker Hub  
+      run: |
         docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
       env:
         DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
