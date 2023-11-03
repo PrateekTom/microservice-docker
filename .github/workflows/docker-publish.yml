@@ -43,7 +43,7 @@ jobs:
     - name: Push Docker Image to GitHub Packages
        IMAGE_TAG="ghcr.io/${{secrets.DOCKER_USERNAME}}/api-docker-ghcr:$(date +%s)"
       run: |
-        docker buildx build --push -t $IMAGE_TAG .
+        docker buildx build --push -t $IMAGE_TAG
         echo "::set-output name=image::$IMAGE_TAG"
 
     - name: Cleanup
