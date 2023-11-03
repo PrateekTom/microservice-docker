@@ -39,6 +39,7 @@ jobs:
 
     - name: Build Docker Image
       run: docker buildx build -t ghcr.io/${{secrets.DOCKER_USERNAME}}/min-api-docker-ghcr:latest .
+      working-directory: microservice-docker
 
     - name: Cleanup
       run: docker system prune -f
