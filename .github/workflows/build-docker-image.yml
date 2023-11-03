@@ -20,4 +20,4 @@ jobs:
       - uses: actions/checkout@v2
       - name: Build the Docker image
       working-directory: microservice-docker
-      run: docker build --file DockerFile -t ${{ secrets.DOCKER_HUB_USERNAME }}/docker-build-workflow:${{ github.sha }} .
+      run: docker build --file Dockerfile -t docker-build-workflow .
