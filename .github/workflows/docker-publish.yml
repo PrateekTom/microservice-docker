@@ -38,7 +38,7 @@ jobs:
         dotnet test
 
     - name: Build Docker Image
-      run: docker buildx build -t ghcr.io/${{DOCKER_USERNAME}}/min-api-docker-ghcr:latest .
+      run: docker buildx build -t ghcr.io/${{secrets.DOCKER_USERNAME}}/min-api-docker-ghcr:latest .
 
     - name: Cleanup
       run: docker system prune -f
