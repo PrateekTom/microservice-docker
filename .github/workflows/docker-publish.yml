@@ -29,7 +29,7 @@ jobs:
 
       #login to ghcr.io
     - name: Login to GitHub Container Registry
-      run: echo ${{ secrets.GITHUB_TOKEN }} | docker login ghcr.io -u ${{secrets.DOCKER_USERNAME }} --password-stdin
+      run: echo ${{ secrets.TOKEN_GIT }} | docker login ghcr.io -u ${{secrets.DOCKER_USERNAME }} --password-stdin
 
 
     - name: Build and Test
